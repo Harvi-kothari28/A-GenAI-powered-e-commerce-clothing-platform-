@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | AI-Powered Haute Couture &amp; Smart Fashion Store</title>
+  <meta name="description" content="AI-Powered Clothing Store featuring personalized style recommendations, high-fashion catalog, and automated outfit pairing.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">✨</div>
+        <span>AURA<span style="color:var(--accent-purple);">.AI</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#catalog" class="active">Collections</a></li>
+        <li><a href="#ai-stylist">AI Stylist</a></li>
+        <li><a href="#virtual-match">Outfit Builder</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-btn" id="cartToggleBtn">
+          🛒 <span>Cart</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+    
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span>🤖 Powered by Spring Boot 3 &amp; Neural Fashion AI</span>
+      </div>
+      <h1 class="hero-title">Elevate Your Aesthetic with<br><span>AI Personal Styling</span></h1>
+      <p class="hero-subtitle">Experience next-generation fashion discovery. Describe your vibe, occasion, or weather, and let our fashion AI curate your tailored outfit instantly.</p>
+
+      <!-- AI STYLIST WIDGET -->
+      <div class="ai-stylist-card" id="ai-stylist">
+        <div class="ai-header">
+          <div class="ai-avatar">✨</div>
+          <div class="ai-title">
+            <h3>AI Personal Fashion Assistant</h3>
+            <p>Describe your occasion or outfit vision for custom recommendations</p>
+          </div>
+        </div>
+
+        <form id="aiForm" class="ai-form">
+          <div class="input-group">
+            <label for="aiPrompt">Prompt / Vision</label>
+            <input type="text" id="aiPrompt" class="custom-input" placeholder="e.g., Chic outfit for a rooftop cocktail party in October..." required>
+          </div>
+
+          <div class="input-group">
+            <label for="aiOccasion">Occasion</label>
+            <select id="aiOccasion" class="custom-select">
+              <option value="Casual">Casual</option>
+              <option value="Business">Business / Formal</option>
+              <option value="Gala">Party / Night out</option>
+              <option value="Streetwear">Streetwear</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="aiStyle">Style Vibe</label>
+            <select id="aiStyle" class="custom-select">
+              <option value="Modern">Modern Minimalist</option>
+              <option value="Streetwear">Streetwear</option>
+              <option value="Glam">Glam &amp; Luxury</option>
+              <option value="Classic">Classic Elegance</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="aiBudget">Max Budget ($)</label>
+            <input type="number" id="aiBudget" class="custom-input" placeholder="300" value="250">
+          </div>
+
+          <button type="submit" class="btn-ai" id="aiSubmitBtn">
+            <span>Generate Outfit</span> ✨
+          </button>
+        </form>
+
+        <!-- AI RESULTS AREA -->
+        <div class="ai-results-container" id="aiResults">
+          <div class="ai-vibe-tag" id="aiVibeBadge">✨ Recommended Ensemble</div>
+          <p class="ai-summary-text" id="aiSummaryText"></p>
+          <div class="ai-tips-list" id="aiTipsList"></div>
+          <div class="product-grid" id="aiRecommendedGrid" style="margin-bottom:0;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG SECTION -->
+    <section id="catalog" style="padding-top: 20px;">
+      <div class="catalog-header">
+        <h2 class="section-title">Explore Collections</h2>
+        <div class="category-pills" id="categoryFilter">
+          <button class="cat-pill active" data-category="ALL">All Items</button>
+          <button class="cat-pill" data-category="TOPS">Tops</button>
+          <button class="cat-pill" data-category="BOTTOMS">Bottoms</button>
+          <button class="cat-pill" data-category="OUTERWEAR">Outerwear</button>
+          <button class="cat-pill" data-category="DRESSES">Dresses</button>
+          <button class="cat-pill" data-category="SHOES">Footwear</button>
+          <button class="cat-pill" data-category="ACCESSORIES">Accessories</button>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="custom-input" placeholder="Search clothes, colors...">
+        </div>
+      </div>
+
+      <!-- MAIN PRODUCT GRID -->
+      <div class="product-grid" id="productGrid">
+        <!-- Loaded via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- CART SLIDE-OVER DRAWER -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="cart-drawer">
+      <div class="drawer-header">
+        <h2>Your Shopping Bag 🛍️</h2>
+        <button class="btn-close" id="cartCloseBtn">&times;</button>
+      </div>
+      <div class="cart-items-list" id="cartItemsList">
+        <p style="color:var(--text-muted); text-align:center; margin-top:40px;">Your cart is currently empty.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cartTotalPrice">$0.00</span>
+        </div>
+        <button class="btn-checkout" id="checkoutBtn">Proceed to Express Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 AURA AI Clothing Store &bull; Spring Boot REST API Architecture &bull; All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
