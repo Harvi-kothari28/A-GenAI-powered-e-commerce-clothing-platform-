@@ -103,3 +103,8 @@ AI-Powered Clothing Store
 ├── pom.xml
 ├── .gitignore
 └── README.md
+
+## 👩‍💻 Author
+
+**Harvi Kothari**  
+B.Tech Computer Science & Engineering
